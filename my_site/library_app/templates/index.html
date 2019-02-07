@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Welcome Django App</h1>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      </style>
+
+
+  {% if customers_dict %}
+
+  <table>
+    <h2>Customer List</h2>
+    <tr>
+      <th>Name Surname</th>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Address</th>
+    </tr>
+    {% for person in customers_dict %}
+      <tr>
+        <td>{{ person.customer_name_surname }}</td>
+        <td>{{ person.customer_id}}</td>
+        <td> {{ person.customer_adress }}</td>
+        <td>{{ person.customer_mail }}</td>
+      </tr>
+      {% endfor %}
+
+    </table>
+    {% endif %}
+    {% if book_dict %}
+    <table>
+      <h2>Book List</h2>
+      <tr>
+        <th>Book Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Publish Date</th>
+      </tr>
+      {% for book in book_dict %}
+        <tr>
+          <td>{{ book.book_title }}</td>
+          <td>{{ book.book_author }}</td>
+          <td> {{ book.book_isbn_no  }}</td>
+          <td>{{ book.book_pub_date }}</td>
+        </tr>
+        {% endfor %}
+
+      </table>
+        {% endif %}
+
+
+
+
+
+  <!-- {% if customers_dict %}
+
+  <ol>
+    {% for person in customers_dict %}
+  </ol>
+  <ul>
+    <li> {{ person.customer_name_surname }} </li>
+    <li>  {{ person.customer_id}} </li>
+    <li>  {{ person.customer_adress }} </li>
+    <li>  {{ person.customer_mail }} </li>
+
+  </ul>
+    {% endfor %}
+
+
+  {% endif %} -->
+
+  </body>
+</html>
