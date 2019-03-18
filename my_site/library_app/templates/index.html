@@ -1,43 +1,54 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>Welcome Django App</h1>
-    <style>
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-      </style>
+{% extends "library_app/base_generic.html" %}
+{% block content %}
 
 
-  {% if customers_dict %}
+<div class="container">
+  <h1 class="text-center">Welcome to the Library Application</h1>
+</div>
+
+<div class="jumbotron">
+  <img src="https://www.rethinktokyo.com/sites/default/files/styles/article-full/public/5438417486_44e5a2e403_o_1_0.jpg?itok=n1Vib9S3" class="rounded mx-auto d-block" alt="Library">
+</div>
+
+<p>Number of sessions:{{ num_visits }}</p>
+
+{% endblock %}
+
+  <!-- Trigger/Open The Modal -->
+  <!-- <button   id="myBtn"  class="btn success">Open Books</button> -->
+
+
+  <!-- The Modal -->
+  <!-- <div id="myModal" class="modal"> -->
+
+    <!-- Modal content -->
+    <!-- <div class="modal-content">
+      <span class="close">&times;</span>
+
+
+  </div> -->
+
+<!-- Customers -->
+
+  <!-- {% if customers_dict %}
 
   <table>
     <h2>Customer List</h2>
     <tr>
+      <th>person_id</th>
       <th>Name Surname</th>
+      <th>Own</th>
       <th>ID</th>
       <th>Email</th>
       <th>Address</th>
     </tr>
     {% for person in customers_dict %}
       <tr>
+        <td>{{person.id}}</td>
         <td>{{ person.customer_name_surname }}</td>
+        <td> <a class="btn-book-update" href="javascript:void(0)" data-company_id="{{ person.id }}">
+          <i class="md-icon material-icons" data-uk-tooltip title="Detaylar/Güncelleme">&#xE254;</i>
+          </a> </td>
         <td>{{ person.customer_id}}</td>
         <td> {{ person.customer_adress }}</td>
         <td>{{ person.customer_mail }}</td>
@@ -45,27 +56,7 @@
       {% endfor %}
 
     </table>
-    {% endif %}
-    {% if book_dict %}
-    <table>
-      <h2>Book List</h2>
-      <tr>
-        <th>Book Title</th>
-        <th>Author</th>
-        <th>ISBN</th>
-        <th>Publish Date</th>
-      </tr>
-      {% for book in book_dict %}
-        <tr>
-          <td>{{ book.book_title }}</td>
-          <td>{{ book.book_author }}</td>
-          <td> {{ book.book_isbn_no  }}</td>
-          <td>{{ book.book_pub_date }}</td>
-        </tr>
-        {% endfor %}
-
-      </table>
-        {% endif %}
+    {% endif %} -->
 
 
 
@@ -88,5 +79,16 @@
 
   {% endif %} -->
 
-  </body>
-</html>
+  <!-- The Modal -->
+  <!-- <div id="costomer_modal" class="modal2"> -->
+
+    <!-- Modal content -->
+    <!-- <div class="modal-con">
+      <span class="close_window">&times;</span>
+
+      <h1>I am modal</h1>
+      <p></p>
+
+    </div>
+
+  </div> -->

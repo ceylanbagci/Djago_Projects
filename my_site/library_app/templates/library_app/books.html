@@ -1,0 +1,57 @@
+{% extends "library_app/base_generic.html" %}
+{% block content %}
+{% load static %}
+
+
+  {% if list_of_books %}
+
+  <table class="table table-hover">
+    <h2>Book List</h2>
+    <h4>Number of Books in Library:{{number_of_books}}</h4>
+    <div class="new_book">
+      <a href="{% url 'add_book' %}">
+        <button type="button" class="btn btn-danger">Add New Book</button>
+      </a>
+    </div>
+
+    <tr class="table-success">
+      <th>ID</th>
+      <th>Book Title</th>
+      <th>Author</th>
+      <th>ISBN</th>
+      <th>Publish Date</th>
+      <th>Owner</th>
+      <th>Select Customer</th>
+    </tr>
+    {% for book in list_of_books %}
+      <tr class="table-success">
+        <td>{{book.id}}</td>
+        <td><a id='books' href="/library_app/books/{{ book.id }}/">{{ book.book_title }}</a></td>
+        <td>{{ book.book_author }}</td>
+        <td> {{ book.book_isbn_no  }}</td>
+        <td>{{ book.book_pub_date }}</td>
+        <td>{{ book.owner }}</td>
+        <td>
+          <div class="row">
+            <div class="col-8">
+              <select class="custom-select">
+                <option selected>Customers</option>
+                {% for customer in customers_dict %}
+                <option value="{{ customer.customer_name_surname }}">{{ customer.customer_name_surname }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-4">
+              <button type="submit" class="btn btn-secondary" style='padding-left:5px'>Borrow</button>
+            </div>
+          </div>
+
+        </td>
+      </tr>
+      {% endfor %}
+
+    </table>
+      {% endif %}
+</div>
+
+{% endblock %}

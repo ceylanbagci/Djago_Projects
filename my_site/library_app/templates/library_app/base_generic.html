@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static  %}
+  {% load main %}
+
+  {% block title %}<title></title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/footer.js' %}"></script>
+
+
+  <!-- Add additional CSS in static file -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+
+
+</head>
+<body>
+  <div class="container">
+    <!-- Navbar -->
+    {% block navbar %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+        </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'about' %}">About <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'books' %}">Books All</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'customer' %}">Customers All</a>
+          </li>
+        </ul>
+
+        {% if user.is_authenticated %}
+        <div class="row" id='row'>
+            <div class="col">
+              <p>{{ user.get_username }}</p>
+            </div>
+            <div class="col" >
+              <a id='logout'  href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+                {% else %}
+                <a id='logout'  href="{% url 'login'%}?next={{request.path}}">Login</a>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </nav>
+    {% endblock %}
+  </div>
+
+
+
+<div class="container">
+  <div class="jumbotron">
+  {% block content %}{% endblock %}
+  </div>
+</div>
+
+
+  {% block pagination %}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+  {% endblock %}
+
+<div class="container">
+<footer class="">
+
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h3>Contact</h3>
+        </div>
+        <div class="col-sm">
+          <h3>About</h3>
+        </div>
+        <div class="col-sm">
+          <h3>Social</h3>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+</div>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+#logo_navbar{
+  height : 30;
+  width : 30%;
+}
+footer{
+  height: 300px;
+  background-color: #e9ecef;
+}
+#row{
+  margin-top: 20px;
+  margin-left: 50px;
+  color:#ffffff;
+
+}
+#logout{
+  color:#ffffff;
+}
+
+#books {
+  color: #ffffff;
+}
+
+a:hover {
+color: #918b8b;
+}
+
+.new_book{
+  margin-left:  900px;
+}
